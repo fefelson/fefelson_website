@@ -16,6 +16,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
+    'www.fefelson.com',
     'fefelson.com',
     'fefelson-website.onrender.com',
     '127.0.0.1',  # For local testing and Render health checks
