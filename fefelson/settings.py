@@ -15,7 +15,11 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'fefelson-website.onrender.com',
+    '127.0.0.1',  # For local testing and Render health checks
+    'localhost',   # For local testing
+]
 
 
 # Application definition
