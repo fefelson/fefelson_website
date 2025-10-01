@@ -1,0 +1,237 @@
+/* Filter controls container */
+.filters {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    gap: 1.5rem; /* Space between filter groups */
+    flex-wrap: nowrap; /* Keep filters side-by-side */
+    margin-bottom: 1.5rem;
+}
+
+/* Filter group (label + select) */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between label and select */
+}
+
+/* Filter labels */
+.filter-label {
+    font-family: 'Montserrat', sans-serif; /* Match navbar typography */
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #b25b2a; /* Copper/rust rivet */
+    margin: 0;
+    text-transform: uppercase; /* Mimic denim branding */
+    letter-spacing: 0.03em;
+}
+
+/* Dropdown styling */
+.filter-select {
+    color: #b25b2a; /* Copper/rust rivet */
+    border: 1px solid #3f3f4f; /* Subtle denim border */
+    border-radius: 0.4rem;
+    padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+}
+
+/* Hover and focus states */
+.filter-select:hover {
+    border-color: #d95f39; /* Rust accent for hover */
+}
+
+.filter-select:focus {
+    border-color: #d4af37; /* Gold highlight from navbar */
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2); /* Subtle gold focus ring */
+    outline: none;
+}
+
+/* Games list container */
+.games-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 2.5rem;
+    background-color: #e9ecf1;
+    color: #e8e8e8;
+    letter-spacing: 0.015em;
+    line-height: 1.5;
+}
+
+/* Game card container */
+.game {
+    background: linear-gradient(145deg, #4e4362, #252525);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    border: 1px solid #2f2f2f;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+    border-color: #4a4a4a;
+}
+
+/* Game header */
+.game-header {
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.game-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #c4c4c4;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+}
+
+/* Matchup column */
+.matchup {
+    flex: 1;
+    border-right: 1px dashed #3a3a3a;
+    padding-right: 1.25rem;
+}
+
+.vs {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #888;
+    margin: 0 1.25rem;
+}
+
+/* Team styling */
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.team img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    filter: brightness(0.95);
+    transition: filter 0.3s ease;
+}
+
+.team img:hover {
+    filter: brightness(1.15);
+}
+
+.team p {
+    margin: 0.5rem 0 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f2f2f2;
+}
+
+/* Odds styling */
+.odds {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+.away-odds,
+.home-odds {
+    color: #d4d4d4;
+    transition: color 0.3s ease;
+}
+
+.away-odds.gold,
+.home-odds.gold {
+    color: #d4af37;
+}
+
+.away-odds.red,
+.home-odds.red {
+    color: #cc4444;
+}
+
+/* Spread styling */
+.game-spread {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.spread {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #b0b0b0;
+}
+
+/* Bet information column */
+.bet-info {
+    flex: 1;
+    padding-left: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.bet-info p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.bet-info strong {
+    font-weight: 600;
+    color: #f5f5f5;
+}
+
+.edge-team {
+    color: #d4af37;
+    font-weight: 700;
+}
+
+.edge-bet {
+    color: #d4af37;
+    font-weight: 700;
+}
+
+
+
+
+
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+
+    .game {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .matchup {
+        border-right: none;
+        border-bottom: 1px dashed #3a3a3a;
+        padding-right: 0;
+        padding-bottom: 0.25rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .bet-info {
+        padding-left: 0;
+        align-items: center;
+        padding-bottom: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+
+}

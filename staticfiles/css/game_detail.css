@@ -1,0 +1,498 @@
+/* CSS Variables for maintainability */
+:root {
+  --bar-container-bg: #4e4362; /* Container background */
+  --bar-container-border: #ccc; /* Border color */
+  --bar-container-height: 20px; /* Single bar height */
+  --bar-height: 18px; /* Individual bar height */
+  --bar-radius: 6px; /* Rounded corners */
+  --bar-transition: width 0.3s ease; /* Smooth width animation */
+  --label-width: 120px; /* Fixed width for centered labels */
+  --primary-text: #fff; /* Text color */
+  --secondary-bg: #2c2f38; /* Background color */
+  --border-color: #444; /* Border color */
+  --accent-color: #4caf50; /* Input focus color */
+}
+
+/* Game Info (League and Date) */
+.game-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 900px; /* Reduced to match odds-header */
+  margin: 0 auto 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  color: var(--primary-text);
+}
+
+.game-info p.league,
+.game-info p.game-date {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ddd;
+  letter-spacing: 0.05em;
+}
+
+/* Odds-Header */
+.odds-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem; /* Reduced from 1rem to bring sections closer */
+  max-width: 900px; /* Reduced from 1200px to make layout more compact */
+  margin: 0 auto 1rem; /* Reduced bottom margin slightly */
+  padding: 1rem; /* Reduced from 1.5rem */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Inter', sans-serif;
+  color: var(--primary-text);
+}
+
+/* Team Sections */
+.team {
+  flex: 1.5; /* Reduced from 2 to balance with game-meta and reduce width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem; /* Reduced from 1.5rem */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Game Meta Section */
+.game-meta {
+  flex: 0.8; /* Reduced from 1 to make narrower */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* Reduced from 1.5rem */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Team Header (Logo, Team Name) */
+.team-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* Reduced from 1rem */
+  width: 100%;
+  margin-bottom: 1rem; /* Reduced from 1.25rem */
+}
+
+.team-logo {
+  max-width: 60px; /* Reduced from 70px to save space */
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+.team-logo:hover {
+  transform: scale(1.05);
+}
+
+.team h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+  color: var(--primary-text);
+  letter-spacing: 0.05em;
+}
+
+/* Moneyline Input Group */
+.ml-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Reduced from 0.75rem */
+  width: 100%;
+  margin: 0.5rem 0; /* Reduced from 0.75rem */
+}
+
+.ml-input-group input {
+  width: 100px; /* Reduced from 120px to save space */
+  padding: 0.5rem; /* Reduced from 0.6rem */
+  border: 1px solid #555;
+  border-radius: var(--bar-radius);
+  background: #333;
+  color: var(--primary-text);
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: border-color 0.2s ease;
+}
+
+.ml-input-group input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.ml-input-group span[id$="-implied-prob"] {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #bbb;
+}
+
+/* Odds Row (AI Win %) */
+.odds-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Reduced from 0.75rem */
+  width: 100%;
+  margin: 0.5rem 0; /* Reduced from 0.75rem */
+}
+
+.odds-row label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.odds-row input {
+  width: 80px; /* Reduced from 90px to save space */
+  padding: 0.5rem; /* Reduced from 0.6rem */
+  border: 1px solid #555;
+  border-radius: var(--bar-radius);
+  background: #333;
+  color: var(--primary-text);
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: border-color 0.2s ease;
+}
+
+.odds-row input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.odds-row span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #bbb;
+}
+
+/* Edge and Wager */
+.edge-wager {
+  margin-top: 0.75rem; /* Reduced from 1rem */
+  text-align: center;
+  width: 100%;
+}
+
+.edge-wager p {
+  margin: 0.3rem 0; /* Reduced from 0.4rem */
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ddd;
+}
+
+.edge-wager span {
+  font-weight: 700;
+  color: var(--primary-text);
+}
+
+/* Game Meta Styling */
+.game-meta p {
+  margin: 0.5rem 0; /* Reduced from 0.6rem */
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ddd;
+}
+
+/* General Layout */
+.game-detail {
+  max-width: 900px; /* Reduced to match odds-header */
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--primary-text);
+  background: var(--secondary-bg);
+}
+
+/* Stat Comparison */
+.stat-comparison {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.team-column {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+.team-column h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--primary-text);
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.bar-header {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #ddd;
+  margin: 0 0.5rem;
+}
+
+.bar-header.defensive {
+  text-align: right;
+}
+
+.bar-header.offensive {
+  text-align: left;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+
+.label {
+  width: var(--label-width);
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #eee;
+}
+
+/* Bar Container */
+.bar-container {
+  flex: 1;
+  height: var(--bar-container-height);
+  background-color: var(--bar-container-bg);
+  border: 1px solid var(--bar-container-border);
+  border-radius: var(--bar-radius);
+  position: relative;
+  overflow: hidden;
+  margin: 0 0.5rem;
+}
+
+/* Pseudo-element for unfilled background */
+.bar-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bar-container-bg);
+  z-index: 0;
+}
+
+/* Bar Styles */
+.bar {
+  height: var(--bar-height);
+  position: absolute;
+  border-radius: var(--bar-radius);
+  transition: var(--bar-transition);
+  z-index: 1;
+}
+
+/* Offensive and Defensive Bars */
+.bar.offensive {
+  top: 0;
+  left: 0;
+}
+
+.bar.defensive {
+  top: 0;
+  right: 0;
+  left: auto;
+}
+
+/* Bar Colors */
+.bar.offensive {
+  background-color: #cc3333;
+}
+
+.bar.defensive {
+  background-color: #3366cc;
+}
+
+/* Odds Comparison */
+.odds-comparison {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  align-items: flex-start;
+}
+
+.odds-comparison .team-column {
+  flex: 1;
+}
+
+.odds-comparison .odds-meta {
+  flex: 0 0 200px;
+  text-align: center;
+}
+
+.odds-comparison h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-text);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-info {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .game-info p.league,
+  .game-info p.game-date {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .odds-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem; /* Reduced from 1.25rem */
+    padding: 0.75rem; /* Reduced from 1rem */
+  }
+
+  .team, .game-meta {
+    width: 100%;
+    padding: 0.75rem; /* Reduced from 1rem */
+  }
+
+  .team-header {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.75rem; /* Reduced from 1rem */
+  }
+
+  .team-logo {
+    max-width: 50px; /* Reduced from 60px */
+  }
+
+  .team h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .ml-input-group {
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem 0;
+  }
+
+  .ml-input-group input {
+    width: 100%;
+    max-width: 120px; /* Reduced from 140px */
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .ml-input-group span[id$="-implied-prob"] {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .odds-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem; /* Reduced from 0.5rem */
+  }
+
+  .odds-row label {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .odds-row input {
+    width: 100%;
+    max-width: 100px; /* Reduced from 110px */
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .odds-row span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .game-meta p {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .edge-wager p {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .stat-comparison {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .team-column {
+    width: 100%;
+  }
+
+  .stat-header, .stat-row {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .bar-header {
+    font-size: 0.75rem;
+  }
+
+  .bar-header.defensive {
+    text-align: right;
+  }
+
+  .bar-header.offensive {
+    text-align: left;
+  }
+
+  .label {
+    width: 100px;
+    text-align: center;
+  }
+
+  .bar-container {
+    min-width: 80px;
+    margin: 0 0.25rem;
+  }
+
+  .odds-comparison {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .odds-comparison .team-column, .odds-comparison .odds-meta {
+    width: 100%;
+  }
+}
