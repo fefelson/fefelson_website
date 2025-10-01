@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/game_detail.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/kelly_wager.js' %}" type="module"></script>
+    <script src="{% static 'js/game_detail.js' %}" type="module"></script>
+{% endblock %}
+
+{% if preferences %}
+  <script>
+    window.userPreferences = {
+      edge: {{ preferences.edge|floatformat:2 }},
+      bankroll: {{ preferences.bankroll }}
+    };
+  </script>
+  {% else %}
+  <script>window.userPreferences = null;</script>
+  {% endif %}
+
+  {% include 'partials/filter_controls.html' %}
+
+
+<main class="game-detail"
+         data-ai="{{ game_data.ai_odds.home_pct|default:0.5 }},{{ game_data.ai_odds.away_pct|default:0.5 }}">
+
+  {% include 'partials/odds_header.html' %}
+
+</main>
+
+{% endblock %}

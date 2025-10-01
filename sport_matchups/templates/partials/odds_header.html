@@ -1,0 +1,58 @@
+<div class="game-info">
+  <p class="league">{{ game_data.league }}</p>
+  <p class="game-date">{{ game_data.game_date|date:"M. d, g a" }}</p>
+</div>
+
+<article class="odds-header">
+  <section class="team away">
+    <div class="team-header">
+      <img src="{{ game_data.away_team.logo }}" alt="{{ game_data.away_team.name }} logo" class="team-logo">
+      <h2>{{ game_data.away_team.name }}</h2>
+    </div>
+
+    <div class="ml-input-group ml-row">
+      <input type="number" id="away-ml-input" value="{{ game_data.game_odds.away_ml|default:-110 }}" step="50">
+      <span id="away-implied-prob">{{ game_data.game_odds.away_pct|floatformat:2 }}%</span>
+    </div>
+
+    <div class="odds-row">
+      <label for="away-ai-pct-input">AI Win %:</label>
+      <input type="number" id="away-ai-pct-input" value="{{ game_data.ai_odds.away_pct|floatformat:1 }}" step="0.5" min="0" max="100">
+      <span>%</span>
+    </div>
+
+    <div id="away-edge-wager" class="edge-wager" style="display: none;">
+      <p>Edge: <span id="bet-edge">0.00%</span></p>
+      <p>Wager Amount: $<span id="wager-amount">0.00</span></p>
+    </div>
+  </section>
+
+  <section class="game-meta">
+    <p>Spread: {{ game_data.game_odds.spread|default:"N/A" }}</p>
+    <p>Vig: {{ game_data.game_odds.vig|floatformat:2|default:"0.00" }}%</p>
+
+  </section>
+
+  <section class="team home">
+    <div class="team-header">
+      <img src="{{ game_data.home_team.logo }}" alt="{{ game_data.home_team.name }} logo" class="team-logo">
+      <h2>{{ game_data.home_team.name }}</h2>
+    </div>
+
+    <div class="ml-input-group ml-row">
+      <input type="number" id="home-ml-input" value="{{ game_data.game_odds.home_ml|default:-110 }}" step="50">
+      <span id="home-implied-prob">{{ game_data.game_odds.home_pct|floatformat:2 }}%</span>
+    </div>
+
+    <div class="odds-row">
+      <label for="home-ai-pct-input">AI Win %:</label>
+      <input type="number" id="home-ai-pct-input" value="{{ game_data.ai_odds.home_pct|floatformat:1 }}" step="0.5" min="0" max="100">
+      <span>%</span>
+    </div>
+
+    <div id="home-edge-wager" class="edge-wager" style="display: none;">
+      <p>Edge: <span id="bet-edge">0.00%</span></p>
+      <p>Wager Amount: $<span id="wager-amount">0.00</span></p>
+    </div>
+  </section>
+</article>

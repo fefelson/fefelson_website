@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - var(--navbar-height, 5rem));">
+  <section class="card shadow-lg p-4 w-100" style="max-width: 500px; border-radius: 1rem;">
+    <h2 class="text-center mb-4">Sign Up</h2>
+
+    {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        There were errors in your form. Please correct them and try again.
+      </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="mb-3">
+          {{ field.label_tag }}
+          {% if field.name == "edge" or field.name == "bankroll" %}
+            <div class="d-flex align-items-center">
+              {{ field }}
+              <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ field.name|capfirst }} preference for email notifications.">
+                <i class="bi bi-info-circle"></i>
+              </span>
+            </div>
+            <small class="text-muted">
+              {% if field.name == "edge" %}
+                Select your preferred edge settings for email updates.
+              {% elif field.name == "bankroll" %}
+                Choose your bankroll preferences for email notifications.
+              {% endif %}
+            </small>
+          {% else %}
+            {{ field }}
+          {% endif %}
+          {% for error in field.errors %}
+            <div class="text-danger small">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success btn-lg">Sign Up</button>
+      </div>
+    </form>
+
+    <p class="text-center mt-3">
+      Already have an account? <a href="{% url 'login' %}">Log in</a>
+    </p>
+  </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/game_detail.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/kelly_wager.js' %}" type="module"></script>
+    <script src="{% static 'js/game_detail.js' %}" type="module"></script>
+{% endblock %}
+
+{% if preferences %}
+  <script>
+    window.userPreferences = {
+      edge: {{ preferences.edge|floatformat:2 }},
+      bankroll: {{ preferences.bankroll }}
+    };
+  </script>
+  {% else %}
+  <script>window.userPreferences = null;</script>
+  {% endif %}
+
+  {% include 'partials/filter_controls.html' %}
+
+
+<main class="game-detail"
+         data-ai="{{ game_data.ai_odds.home_pct|default:0.5 }},{{ game_data.ai_odds.away_pct|default:0.5 }}">
+
+  {% include 'partials/odds_header.html' %}
+
+  <!-- Odds Comparison (unchanged) -->
+  <section class="odds-comparison">
+      <div class="team-column away"></div>
+      <div class="team-column home"></div>
+  </section>
+
+  <!-- Stat Comparison -->
+  <section class="stat-comparison">
+    <div class="team-column away">
+      <h3>{{ game_data.away_team.name }} Stats</h3>
+      <div class="stat-header">
+        <div class="bar-header defensive">opponents</div>
+        <div class="label"></div>
+        <div class="bar-header offensive">TEAM</div>
+      </div>
+      {% for stat_pair in game_data.away_team.stats.stat_pairs %}
+        <div class="stat-row">
+          <div class="bar-container">
+            <div class="bar defensive" style="width: {{ stat_pair.def_score|floatformat:2 }}%; background-color: {{ stat_pair.def_color|default:'#3366cc' }};" title="Defensive {{ stat_pair.stat|title }}: {{ stat_pair.def_score|floatformat:2 }}%"></div>
+          </div>
+          <div class="label">{{ stat_pair.stat|title }}</div>
+          <div class="bar-container">
+            <div class="bar offensive" style="width: {{ stat_pair.off_score|floatformat:2 }}%; background-color: {{ stat_pair.off_color|default:'#cc3333' }};" title="Offensive {{ stat_pair.stat|title }}: {{ stat_pair.off_score|floatformat:2 }}%"></div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No stats available for Away Team</p>
+      {% endfor %}
+    </div>
+
+    <div class="team-column home">
+      <h3>{{ game_data.home_team.name }} Stats</h3>
+      <div class="stat-header">
+        <div class="bar-header defensive">opponents</div>
+        <div class="label"></div>
+        <div class="bar-header offensive">TEAM</div>
+      </div>
+      {% for stat_pair in game_data.home_team.stats.stat_pairs %}
+        <div class="stat-row">
+          <div class="bar-container">
+            <div class="bar defensive" style="width: {{ stat_pair.def_score|floatformat:2 }}%; background-color: {{ stat_pair.def_color|default:'#3366cc' }};" title="Defensive {{ stat_pair.stat|title }}: {{ stat_pair.def_score|floatformat:2 }}%"></div>
+          </div>
+          <div class="label">{{ stat_pair.stat|title }}</div>
+          <div class="bar-container">
+            <div class="bar offensive" style="width: {{ stat_pair.off_score|floatformat:2 }}%; background-color: {{ stat_pair.off_color|default:'#cc3333' }};" title="Offensive {{ stat_pair.stat|title }}: {{ stat_pair.off_score|floatformat:2 }}%"></div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No stats available for Home Team</p>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+
+{% endblock %}

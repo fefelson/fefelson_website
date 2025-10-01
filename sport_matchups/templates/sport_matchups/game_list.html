@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+  {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/game_list.css' %}">
+  {% endblock %}
+
+
+  {% if preferences %}
+  <script>
+    window.userPreferences = {
+      edge: {{ preferences.edge|floatformat:2 }},
+      bankroll: {{ preferences.bankroll }}
+    };
+  </script>
+  {% else %}
+  <script>window.userPreferences = null;</script>
+  {% endif %}
+
+  {% include 'partials/filter_controls.html' %}
+
+
+  <!-- Filter Controls -->
+  <div class="filters mb-4">
+      <div class="filter-group d-inline-flex align-items-center me-3">
+          <label for="leagueFilter" class="filter-label">League:</label>
+          <select id="leagueFilter" class="form-select filter-select">
+              <option value="all">All Leagues</option>
+              <!-- Options will be populated dynamically by JavaScript -->
+          </select>
+      </div>
+      <div class="filter-group d-inline-flex align-items-center">
+          <label for="dateFilter" class="filter-label">Game Date:</label>
+          <select id="dateFilter" class="form-select filter-select">
+              <option value="all">All Dates</option>
+              <option value="today">Today</option>
+              <option value="future">Future</option>
+          </select>
+      </div>
+  </div>
+
+  {% if games %}
+    <article class="games-list">
+      {% for game in games %}
+        <article class="game row border rounded p-2 mb-3"
+                 data-edge="{{ game.edge|default:0|floatformat:2 }}"
+                 data-odds="{{ game.game_odds.home_ml }},{{ game.game_odds.away_ml }}"
+                 data-ai="{{ game.ai_odds.home_pct }},{{ game.ai_odds.away_pct }}"
+                 data-league="{{ game.league }}"
+                 data-date="{{ game.game_date|date:'c' }}">
+
+          <!-- Matchup Column -->
+          <section class="col-md-6 matchup">
+            <header class="game-header mb-2">
+              <h5>{{ game.game_date|date:"M d h:ia" }}</h5>
+            </header>
+
+            <div class="d-flex align-items-center justify-content-between">
+              <!-- Away team -->
+              <div class="team away-team text-center">
+                <img src="{{ game.away_team.logo }}" alt="{{ game.away_team.name }} logo" class="mb-1" width="50">
+                <p>{{ game.away_team.name }}</p>
+                <span class="odds away-odds">{{ game.game_odds.away_ml }}</span>
+              </div>
+
+              <span class="vs">vs</span>
+
+              <!-- Home team -->
+              <div class="team home-team text-center">
+                <span class="odds home-odds">{{ game.game_odds.home_ml }}</span>
+                <p>{{ game.home_team.name }}</p>
+                <img src="{{ game.home_team.logo }}" alt="{{ game.home_team.name }} logo" class="mt-1" width="50">
+              </div>
+            </div>
+
+            <div class="game-spread text-center mt-2">
+              <small>Spread: {{ game.game_odds.spread }}</small>
+            </div>
+          </section>
+
+          <!-- Bet Column -->
+          <section class="col-md-6 bet-info d-flex flex-column justify-content-center">
+            <p><span class="edge-team">TBD</span> <span class="edge-bet">TBD</span></p>
+            <p><strong>Book Pct:</strong> <span class="book-pct">TBD</span>%</p>
+            <p><strong>AI Edge:</strong> (<span class="ai-pct">TBD</span>%)</p>
+            <p><strong>Wager:</strong> <span class="bet-amount">$0</span></p>
+            <a href="{% url 'game_detail' game_id=game.game_id %}" class="btn btn-primary mt-2">View Game</a>
+
+          </section>
+
+        </article>
+      {% endfor %}
+    </article>
+  {% else %}
+    <p>No upcoming games found.</p>
+  {% endif %}
+
+{% block scripts %}
+  <script type="module" src="{% static 'js/filter_games.js' %}"></script>
+  <script type="module" src="{% static 'js/game_list.js' %}"></script>
+  <script type="module" src="{% static 'js/game_display.js' %}"></script>
+{% endblock %}
+
+{% endblock %}
+
+

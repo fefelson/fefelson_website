@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5" style="max-width: 600px;">
+    <h2 class="mb-3" style="color: #6c757d;">Hello, {{ user.username }}!</h2>
+    <h3 class="mb-4" style="color: #6c757d;">User Settings</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" action="{% url 'user_preferences' %}">
+        {% csrf_token %}
+
+        <!-- Edge -->
+        <div class="mb-3">
+            <label for="id_edge" class="form-label">Min Edge (%)</label>
+            <select id="id_edge" name="edge" class="form-select w-auto">
+                <option value="5" {% if preferences.edge == 5 %}selected{% endif %}>5%</option>
+                <option value="7.5" {% if preferences.edge == 7.5 %}selected{% endif %}>7.5%</option>
+                <option value="10" {% if preferences.edge == 10 %}selected{% endif %}>10%</option>
+                <option value="15" {% if preferences.edge == 15 %}selected{% endif %}>15%</option>
+            </select>
+        </div>
+
+        <!-- Bankroll -->
+        <div class="mb-3">
+            <label for="id_bankroll" class="form-label">Bankroll ($)</label>
+            <select id="id_bankroll" name="bankroll" class="form-select w-auto">
+                <option value="100" {% if preferences.bankroll == 100 %}selected{% endif %}>$100</option>
+                <option value="200" {% if preferences.bankroll == 200 %}selected{% endif %}>$200</option>
+                <option value="500" {% if preferences.bankroll == 500 %}selected{% endif %}>$500</option>
+                <option value="1000" {% if preferences.bankroll == 1000 %}selected{% endif %}>$1000</option>
+                <option value="2000" {% if preferences.bankroll == 2000 %}selected{% endif %}>$2000</option>
+                <option value="5000" {% if preferences.bankroll == 5000 %}selected{% endif %}>$5000</option>
+                <option value="10000" {% if preferences.bankroll == 10000 %}selected{% endif %}>$10000</option>
+            </select>
+        </div>
+
+        <!-- Email notifications -->
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="id_send_email" name="send_email"
+                   {% if user.send_email %}checked{% endif %}>
+            <label class="form-check-label" for="id_send_email">Receive email notifications</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

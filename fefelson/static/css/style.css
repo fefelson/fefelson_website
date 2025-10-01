@@ -1,0 +1,248 @@
+/* Global body styling */
+body {
+    background-color: #dee4ee; /* Soft washed indigo */
+    color: #b25b2a;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.015em;
+    line-height: 1.5;
+}
+
+/* Elegant Navbar Styling */
+.elegant-navbar {
+    background: linear-gradient(180deg, #dee4ee 0%, #d1d8e5 100%); /* Soft indigo gradient */
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #c5c7cc; /* Subtle denim stitch */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Brand Logo/Text */
+.navbar-brand {
+    color: #b25b2a; /* Copper/rust rivet */
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #d4af37; /* Gold highlight */
+    transform: scale(1.05); /* Subtle zoom effect */
+}
+
+/* Nav Links */
+.nav-link {
+    color: #4a4a4a; /* Slightly darker grey for contrast */
+    font-family: 'Montserrat', sans-serif; /* Clean, elegant sans-serif */
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d4af37; /* Gold underline */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #d4af37; /* Gold on hover/active */
+}
+
+/* Logout Button */
+.elegant-nav-btn {
+    color: #4a4a4a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    background: none;
+    border: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.elegant-nav-btn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d4af37;
+    transition: width 0.3s ease;
+}
+
+.elegant-nav-btn:hover::after {
+    width: 100%;
+}
+
+.elegant-nav-btn:hover {
+    color: #d4af37;
+}
+
+/* Toggler */
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    transform: rotate(90deg); /* Subtle rotation for interactivity */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23b25b2a' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Collapse Alignment */
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+/* Focus States for Accessibility */
+.nav-link:focus,
+.elegant-nav-btn:focus {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+}
+
+
+
+/* Container for main content */
+.container {
+    margin-top: 6rem; /* push below fixed navbar */
+}
+
+
+
+/* Bootstrap button override */
+.btn {
+    background-color: #b25b2a; /* Rust rivet */
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    width: 45%;
+    letter-spacing: 0.03em;
+    border-radius: 0.4rem;
+    font-size: 0.95rem; /* Reasonable text size */
+    padding: 0.45rem 1rem; /* Balanced button size */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #d4af37; /* Gold stitch */
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background-color: #8f4220;
+    transform: translateY(0);
+}
+
+/* Filter controls container */
+.filter-controls {
+    display: flex;
+    align-items: center;
+    background-color: #4e4362; /* Slightly lighter than navbar */
+    border: 1px solid #2c2f3a;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    gap: 1rem;
+    font-size: 1.2rem;
+    margin-top: 6rem; /* Match .container margin-top to clear navbar */
+
+}
+
+
+/* Filter labels */
+.filter-controls label {
+    font-weight: 600;
+    color: #f0e6d2; /* Off-white stitching tone */
+    margin-bottom: 0; /* align with select vertically */
+}
+
+/* Dropdown styling */
+.filter-controls select {
+    background-color: #161925;
+    color: #f0e6d2;
+    border: 1px solid #3f3f4f;
+    border-radius: 0.4rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Hover + focus states */
+.filter-controls select:hover,
+.filter-controls select:focus {
+    border-color: #d95f39; /* Rust accent */
+    outline: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .elegant-navbar {
+        padding: 1rem;
+    }
+    .navbar-nav {
+        padding: 1rem 0;
+        background: #dee4ee;
+        border-radius: 8px;
+    }
+    .nav-link,
+    .elegant-nav-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    .navbar-brand {
+        font-size: 1.6rem;
+    }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .navbar-collapse {
+        padding-top: 1rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+    }
+
+    .filter-controls {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .filter-controls label {
+        margin-right: 0;
+    }
+}

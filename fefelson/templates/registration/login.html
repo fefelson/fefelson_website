@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - var(--navbar-height, 5rem));">
+  <section class="card shadow-lg p-4 w-100" style="max-width: 400px; border-radius: 1rem;">
+    <h2 class="text-center mb-4">Login</h2>
+
+    {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        Your username or password was incorrect. Please try again.
+      </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg">Login</button>
+      </div>
+    </form>
+
+    <p class="text-center mt-3">
+      Don’t have an account? <a href="{% url 'signup' %}">Sign up</a>
+    </p>
+  </section>
+</main>
+{% endblock %}
